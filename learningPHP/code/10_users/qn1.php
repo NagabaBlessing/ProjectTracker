@@ -6,13 +6,13 @@ it should print “Number of views: 2,” and so on. -->
 $cookie = 'page_views';
 
 if (isset($_COOKIE[$cookie])) {
-    $page_views = (int)$_COOKIE[$cookie] + 1;
+    $page_cookies = (int)$_COOKIE[$cookie] + 1;
 } else {
-    $page_views = 1;
+    $page_cookies = 1;
 }
 
 // expires in 1 day (60 seconds * 60 minutes * 1 hours * 1days)
-setcookie($cookie, $page_views, time() + (60 * 60 * 1 * 1));
+setcookie($cookie, $page_cookies, time() + (60 * 60 * 1 * 1));
 
 ?>
 <!DOCTYPE html>
@@ -24,6 +24,6 @@ setcookie($cookie, $page_views, time() + (60 * 60 * 1 * 1));
 </head>
 <body>
     <h1>Number of Times you have viewed this page</h1>
-    <p>Number of views: <?= $page_views; ?></p>
+    <p>Number of views: <?= $page_cookies; ?></p>
 </body>
 </html>
