@@ -1,62 +1,16 @@
-Learning PHP
-==========
+This repo is grouped into two learing php and wordpress.
 
-## What Is This?
+## learning PHP
+this folder contains some solutions for  the chapter exercies of Learing PHP by David Skalr. The sub folders are named according to the chapter number.
 
-This is the example code that from [Learning PHP](http://shop.oreilly.com/product/0636920043034.do) by David Sklar.
+In order to run the chapter solutions;
+1. clone this repo
+2. cd into the cloned folder
+3. run composer install (make sure you have php, XAMP, LAMP installed on your laptop)
+4. navigate the chapter folder you want to execute.
+5. then  in the terminal run php filenam (php qn1.php)
+6. for the browser display make sure that your XAMP,ZAMP,LAMP are configured and running well. for linux cp the chapter folder or file to /var/www/html the go the browser type localhost/filename (localhost/qn1.php) incase you copy the folder file only if you copied the folder type localhost/8_dbs/qn1.php
+7. for windows if you want browser display copy the folder to htdocs in the xammp folder
 
-See an error? Report it [here](http://oreilly.com/catalog/errata.csp?isbn=0636920043034), or simply fork and send us a pull request.
-
-If you want a copy of all of the example code snippets in this repo, lick the Download Zip button to the right to download everything.
-
-## How do I use this code?
-
-The `code` directory should contain runnable versions of your code.
-The `runner.php` program runs one or more code examples. runner.php --help tells you how to use it:
-
-```
-runner.php [--chapter=CHAPTER] [--code=CODE] [--bare] [--fail-first] [--ignore-net-fail] [--cli=CLI]
-
-Runs one or more code examples and reports on success/failure.
-
-  --chapter=CHAPTER     Run code examples from chapter CHAPTER
-  --code=CODE           Run code example CODE
-  --cli=CLI             Use PHP binary installed at CLI
-  --bare                Just run the code, don't report on success/failure
-  --fail-first          Exit after first code failure
-  --ignore-net-fail     Ignore failures that seem to be from a lack of network
-
-PHP binary configured to run code examples:
-   /usr/local/bin/php
-
---chapter and --code and each be specified more than once.
-
-CHAPTER and CODE are interpreted as shell globs.
-
-CHAPTER should just be the name of a chapter file without extension, e.g. "datetime".
-
-CODE should be the name of a chapter code directory, then /, then the basename of the code example, e.g. "datetime/interval"
-```
-
-For example, you can try `runner.php --code=datetime/interval` or `runner.php --chapter=datetime`.
-
-### Install dependencies:
-
-`runner.php` depends on a few things installable by Composer. 
-
-- Run `composer install` from the same directory that `runner.php` is in to install them. 
-- Run `composer install` from the `code` subdirectory to install them.
-
-### Executing the code:
-
-If you want `runner.php` to run a piece of code and not run unnecessary checks, provide the `--bare` commandline argument.
-
-> php runner.php --code={chapter}/{exercise} --bare 
-
-Replace the following {chapter} with chapter folder name e.g. data; and {exercise} with php name of the exercise e.g. exercise.1 (don't add .php)
-
-Here's an example: 
-
-> php runner.php --code=data/exercise.1 --bare 
-
-#### End
+## Wordpress 
+Coming soon
