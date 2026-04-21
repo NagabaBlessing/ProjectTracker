@@ -1,0 +1,113 @@
+/*
+Theme Name: Kanzu Demo Theme
+Description: A simple theme to demonstrate The Loop
+Version: 1.0
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+    background: #f0f6ff;
+    color: #1f2937;
+}
+
+/* Navigation bar */
+.site-header {
+    background: #0a1628;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #1e6eb5;
+}
+
+.site-title {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.site-title .kanzu {
+    color: #f97316;
+}
+
+.site-title .desk {
+    color: #4da6e8;
+}
+
+/* Main content area */
+.site-main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    color: #0a1628;
+    font-size: 26px;
+    margin-bottom: 24px;
+    border-left: 4px solid #1e6eb5;
+    padding-left: 12px;
+}
+
+/* Each post card */
+.post-card {
+    background: white;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+    border-color: #1e6eb5;
+    box-shadow: 0 2px 8px rgba(30, 110, 181, 0.1);
+}
+
+.post-card h2 {
+    color: #0a1628;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.post-card p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* No posts message */
+.no-posts {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* Footer */
+.site-footer {
+    background: #0a1628;
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px 40px;
+    font-size: 13px;
+    margin-top: 60px;
+    border-top: 3px solid #1e6eb5;
+}
+
+.site-footer .kanzu {
+    color: #f97316;
+}
+
+.site-footer .code {
+    color: #4da6e8;
+}
