@@ -13,6 +13,10 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+// Include plugin files
+require_once plugin_dir_path(__FILE__) . 'includes/cpt.php';
+require_once plugin_dir_path(__FILE__) . 'includes/metaboxes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin-views.php';
 
 // Activation hook
 register_activation_hook(__FILE__, 'kct_activate');
@@ -32,18 +36,20 @@ function kct_deactivate() {
 add_action('admin_menu', 'kct_admin_menu');
 function kct_admin_menu() {
     add_menu_page(
-        'Project Tracker',           // Page title
-        'Project Tracker',           // Menu title
-        'manage_options',            // Capability required
-        'kct-dashboard',             // Menu slug
-        'kct_dashboard_page',        // Function to display page
-        'dashicons-clipboard',       // Icon
-        6                            // Position in menu
+        'Project Tracker',           // Page title shown in browser tab
+        'Project Tracker',           // Label shown in sidebar menu
+        'manage_options',            //  Who can see it - 'manage_options' means admins only - capability required
+        'kct-dashboard',             // Menu slug - Unique ID for this page used in URL
+        'kct_dashboard_page',        // Function to display page / that builds the page content
+        'dashicons-clipboard',       // Icon- inbuilt in wordpress
+        6                            // Position in menu - Position - 6 puts it near top of sideba
     );
 }
 
 // Dashboard page content
 function kct_dashboard_page() {
+    kct_render_dashboard();
+
     echo '<div class="wrap">';
     echo '<h1>KanzuCode Project Tracker</h1>';
     echo '<p>Welcome to the Project Tracker plugin.</p>';
