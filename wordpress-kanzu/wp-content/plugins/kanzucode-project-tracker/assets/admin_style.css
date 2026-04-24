@@ -1,0 +1,45 @@
+/* KanzuCode Project Tracker Admin Styles */
+
+.kct-wrap {
+    max-width: 1100px;
+}
+
+.kct-wrap h1 {
+    color: #1a1a2e;
+    border-left: 4px solid #f97316;
+    padding-left: 12px;
+}
+
+.kct-table th {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 12px 16px;
+}
+
+.kct-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+.kct-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.kct-badge-progress {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.kct-badge-qa {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.kct-badge-live {
+    background: #f0fdf4;
+    color: #15803d;
+}

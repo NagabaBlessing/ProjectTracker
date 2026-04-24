@@ -35,13 +35,25 @@ function kct_render_dashboard() {
                     <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <?php
                         $status    = get_post_meta(get_the_ID(), '_kct_status', true);
-                        $developer = get_post_meta(get_the_ID(), '_kct_status', true);
+                        $developer = get_post_meta(get_the_ID(), '_kct_developer', true);
                         $client_id = get_post_meta(get_the_ID(), '_kct_client_id', true);
                         $go_live   = get_post_meta(get_the_ID(), '_kct_go_live_date', true);
                         ?>
                         <tr>
                             <td><?= get_the_title() ?></td>
-                            <td><?= esc_html($status) ?></td>
+                            <td>
+    <?php
+    $badge_class = match($status) {
+        'In Progress' => 'kct-badge-progress',
+        'QA Testing'  => 'kct-badge-qa',
+        'Go Live'     => 'kct-badge-live',
+        default       => ''
+    };
+    ?>
+    <span class="kct-badge <?= $badge_class ?>">
+        <?= esc_html($status) ?>
+    </span>
+</td>
                             <td><?= esc_html($developer) ?></td>
                             <td><?= esc_html($client_id) ?></td>
                             <td><?= esc_html($go_live) ?></td>

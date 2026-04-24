@@ -48,10 +48,19 @@ function kct_admin_menu() {
 
 // Dashboard page content
 function kct_dashboard_page() {
-    kct_render_dashboard();
-
-    echo '<div class="wrap">';
-    echo '<h1>KanzuCode Project Tracker</h1>';
-    echo '<p>Welcome to the Project Tracker plugin.</p>';
-    echo '</div>';
+    kct_render_dashboard();            
 }
+// Enqueue admin styles
+
+function kct_enqueue_admin_styles($hook) {
+    if ($hook !== 'toplevel_page_kct-dashboard') {
+        return;
+    }
+    wp_enqueue_style(
+        'kct-admin-style',
+        plugin_dir_url(__FILE__) . 'assets/admin-style.css',
+        array(),
+        '1.0.0'
+    );
+}
+add_action('admin_enqueue_scripts', 'kct_enqueue_admin_styles');
