@@ -23,7 +23,7 @@ function kct_register_project_cpt() {
         'public'              => true,
         'show_in_menu'        => true,
         'show_in_admin_bar'   => true,
-        'supports'            => array('title', 'editor'),
+        'supports'            => array('title'),
         'has_archive'         => true,
         'rewrite'             => array('slug' => 'projects'),
         'menu_icon'           => 'dashicons-portfolio',
