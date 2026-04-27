@@ -9,6 +9,9 @@
  * License:     GPL2
  */
 
+// Define plugin file path constant once in main***cleaner than using __FILE__ everywhere
+define( 'KCT_PLUGIN_FILE', __FILE__ );
+
 // Exit if accessed directly - security measure
 if (!defined('ABSPATH')) {
     exit;
@@ -17,6 +20,9 @@ if (!defined('ABSPATH')) {
 require_once plugin_dir_path(__FILE__) . 'includes/cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'includes/admin-views.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/client-role.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
+
 
 // Activation hook
 register_activation_hook(__FILE__, 'kct_activate');
@@ -64,3 +70,13 @@ function kct_enqueue_admin_styles($hook) {
     );
 }
 add_action('admin_enqueue_scripts', 'kct_enqueue_admin_styles');
+// Enqueue client frontend styles
+function kct_enqueue_frontend_styles() {
+    wp_enqueue_style(
+        'kct-frontend-style',
+        plugin_dir_url( __FILE__ ) . 'assets/clientfrontend-style.css',
+        array(),
+        '1.0.0'
+    );
+}
+add_action( 'wp_enqueue_scripts', 'kct_enqueue_frontend_styles' );
