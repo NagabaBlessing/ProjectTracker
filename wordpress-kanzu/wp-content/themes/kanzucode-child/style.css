@@ -9,3 +9,58 @@
 */
 
 /* my custom styles */
+/* ============================================
+   KANZU CODE BRAND STYLES
+   ============================================ */
+
+:root {
+    --kc-primary:     #E8431E;   /* Kanzu Code orange-red */
+    --kc-dark:        #1A1A2E;   /* Deep dark navy */
+    --kc-light:       #F9F9F9;   /* Off white background */
+    --kc-text:        #333333;   /* Body text */
+    --kc-font:        'Inter', sans-serif;
+}
+
+/* Apply brand font */
+body {
+    font-family: var(--kc-font);
+    color: var(--kc-text);
+    background-color: var(--kc-light);
+}
+
+/* Brand the site header */
+.wp-block-template-part header,
+header.site-header {
+    background-color: var(--kc-dark);
+    padding: 1rem 2rem;
+}
+
+/* Site title / logo area */
+.wp-site-blocks .site-title a,
+.site-title a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Navigation links */
+.wp-block-navigation a {
+    color: #ffffff !important;
+}
+
+.wp-block-navigation a:hover {
+    color: var(--kc-primary) !important;
+}
+
+/* Brand colour for buttons and links */
+a {
+    color: var(--kc-primary);
+}
+
+.wp-block-button__link,
+button[type="submit"] {
+    background-color: var(--kc-primary) !important;
+    border: none;
+    border-radius: 4px;
+}
