@@ -4,7 +4,8 @@ if (!defined('ABSPATH')) {
 }
 
 // Register the meta boxes
-function kct_register_meta_boxes() {
+function kct_register_meta_boxes()
+{
     add_meta_box(
         'kct_project_details',
         'Project Details',
@@ -18,14 +19,15 @@ add_action('add_meta_boxes', 'kct_register_meta_boxes');
 
 
 // Render the meta box fields
-function kct_project_details_cb($post) {
+function kct_project_details_cb($post)
+{
     wp_nonce_field('kct_save_project_details', 'kct_project_nonce');
 
     // Get existing saved values
-    $status    = get_post_meta($post->ID, '_kct_status',     true);
-    $developer = get_post_meta($post->ID, '_kct_developer',  true);
-    $client_id = get_post_meta($post->ID, '_kct_client_id',  true);
-    $go_live   = get_post_meta($post->ID, '_kct_go_live_date', true);
+    $status = get_post_meta($post->ID, '_kct_status', true);
+    $developer = get_post_meta($post->ID, '_kct_developer', true);
+    $client_id = get_post_meta($post->ID, '_kct_client_id', true);
+    $go_live = get_post_meta($post->ID, '_kct_go_live_date', true);
 
     // Fetch all users with the kct_client role for the client dropdown
     $clients = get_users(array('role' => 'kct_client'));
@@ -46,9 +48,9 @@ function kct_project_details_cb($post) {
                 <select name="kct_status" id="kct_status">
                     <option value="">— Select Status —</option>
                     <option value="In Progress" <?php selected($status, 'In Progress'); ?>>In Progress</option>
-                    <option value="QA Testing"  <?php selected($status, 'QA Testing');  ?>>QA Testing</option>
-                    <option value="Go Live"     <?php selected($status, 'Go Live');     ?>>Go Live</option>
-                    <option value="Completed"   <?php selected($status, 'Completed');   ?>>Completed</option>
+                    <option value="QA Testing" <?php selected($status, 'QA Testing'); ?>>QA Testing</option>
+                    <option value="Go Live" <?php selected($status, 'Go Live'); ?>>Go Live</option>
+                    <option value="Completed" <?php selected($status, 'Completed'); ?>>Completed</option>
                 </select>
             </td>
         </tr>
@@ -59,16 +61,13 @@ function kct_project_details_cb($post) {
             <td>
                 <select name="kct_developer" id="kct_developer" style="min-width:200px">
                     <option value="">— Select Developer —</option>
-                    <?php foreach ($developers as $dev) : ?>
-                        <option 
-                            value="<?php echo esc_attr($dev->display_name); ?>"
-                            <?php selected($developer, $dev->display_name); ?>
-                        >
-                            <?php echo esc_html($dev->display_name . ' (' . $dev->user_email . ')'); ?>
+                    <?php foreach ($developers as $dev): ?>
+                        <option value="<?php echo esc_attr($dev->display_name); ?>" <?php selected($developer, $dev->display_name); ?>>
+                            <?php echo esc_html($dev->display_name); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <p class="description">Only administrators, editors and authors appear here.</p>
+                <p class="description">Only editors and authors appear here.</p>
             </td>
         </tr>
 
@@ -78,16 +77,13 @@ function kct_project_details_cb($post) {
             <td>
                 <select name="kct_client_id" id="kct_client_id" style="min-width:200px">
                     <option value="">— Select Client —</option>
-                    <?php foreach ($clients as $client) : ?>
-                        <option 
-                            value="<?php echo esc_attr($client->ID); ?>"
-                            <?php selected($client_id, $client->ID); ?>
-                        >
-                            <?php echo esc_html($client->display_name . ' (' . $client->user_email . ')'); ?>
+                    <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo esc_attr($client->ID); ?>" <?php selected($client_id, $client->ID); ?>>
+                            <?php echo esc_html($client->display_name); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <?php if (empty($clients)) : ?>
+                <?php if (empty($clients)): ?>
                     <p class="description" style="color:#b32d2e">
                         No clients found. Add a user with the "KCT Client" role first.
                     </p>
@@ -99,10 +95,7 @@ function kct_project_details_cb($post) {
         <tr>
             <th><label for="kct_go_live_date">Go-Live Date</label></th>
             <td>
-                <input type="date" 
-                       name="kct_go_live_date" 
-                       id="kct_go_live_date" 
-                       value="<?php echo esc_attr($go_live); ?>">
+                <input type="date" name="kct_go_live_date" id="kct_go_live_date" value="<?php echo esc_attr($go_live); ?>">
             </td>
         </tr>
 
@@ -112,10 +105,13 @@ function kct_project_details_cb($post) {
 
 
 // Save meta box data
-function kct_save_project_details($post_id) {
+function kct_save_project_details($post_id)
+{
 
-    if (!isset($_POST['kct_project_nonce']) ||
-        !wp_verify_nonce($_POST['kct_project_nonce'], 'kct_save_project_details')) {
+    if (
+        !isset($_POST['kct_project_nonce']) ||
+        !wp_verify_nonce($_POST['kct_project_nonce'], 'kct_save_project_details')
+    ) {
         return;
     }
 
@@ -128,26 +124,38 @@ function kct_save_project_details($post_id) {
     }
 
     if (isset($_POST['kct_status'])) {
-        update_post_meta($post_id, '_kct_status',
-            sanitize_text_field($_POST['kct_status']));
+        update_post_meta(
+            $post_id,
+            '_kct_status',
+            sanitize_text_field($_POST['kct_status'])
+        );
     }
 
     // Developer is now saved as display_name string (same as before)
-    // so your shortcode and admin views need zero changes
+   
     if (isset($_POST['kct_developer'])) {
-        update_post_meta($post_id, '_kct_developer',
-            sanitize_text_field($_POST['kct_developer']));
+        update_post_meta(
+            $post_id,
+            '_kct_developer',
+            sanitize_text_field($_POST['kct_developer'])
+        );
     }
 
     // Client is saved as numeric ID (same as before)
     if (isset($_POST['kct_client_id'])) {
-        update_post_meta($post_id, '_kct_client_id',
-            absint($_POST['kct_client_id']));
+        update_post_meta(
+            $post_id,
+            '_kct_client_id',
+            absint($_POST['kct_client_id'])
+        );
     }
 
     if (isset($_POST['kct_go_live_date'])) {
-        update_post_meta($post_id, '_kct_go_live_date',
-            sanitize_text_field($_POST['kct_go_live_date']));
+        update_post_meta(
+            $post_id,
+            '_kct_go_live_date',
+            sanitize_text_field($_POST['kct_go_live_date'])
+        );
     }
 }
 add_action('save_post_project', 'kct_save_project_details');

@@ -41,3 +41,15 @@ function kct_redirect_client_after_login( $redirect_to, $request, $user ) {
     return $redirect_to;
 }
 add_filter( 'login_redirect', 'kct_redirect_client_after_login', 10, 3 );
+/**
+ * Redirect admins away from wp-admin after login
+ * They should only see the frontend admin portal page
+ */
+function kct_redirect_admin_after_login($redirect_to, $request, $user) {
+    if (isset($user->roles) && in_array('administrator', $user->roles)) {
+        // Send admin straight to the Project Tracker page
+        return admin_url('admin.php?page=kct-dashboard');
+    }
+    return $redirect_to;
+}
+add_filter('login_redirect', 'kct_redirect_admin_after_login', 10, 3);

@@ -17,12 +17,25 @@ function kct_project_status_shortcode() {
 
     // STEP 2: Is the logged-in user actually a client?
     $current_user = wp_get_current_user();
-    if ( ! in_array( 'kct_client', $current_user->roles ) ) {
-        // Logged in but not a client (e.g. admin visiting the page)
-        return '<div class="kct-notice">
-                    <p>This page is for clients only.</p>
-                </div>';
-    }
+
+// If admin or editor, show them a link to the full dashboard instead
+if ( in_array('administrator', $current_user->roles) || 
+     in_array('editor', $current_user->roles) ) {
+    return '<div class="kct-notice">
+                <p>You are logged in as an administrator. 
+                <a href="' . admin_url('admin.php?page=kct-dashboard') . '">
+                    Go to Project Tracker Dashboard →
+                </a></p>
+            </div>';
+}
+
+// Not a client and not an admin
+if ( ! in_array( 'kct_client', $current_user->roles ) ) {
+    return '<div class="kct-notice">
+                <p>This page is for clients only.</p>
+            </div>';
+}
+    
 
     // STEP 3: Find the project linked to this client
     // We use WP_Query with meta_query to search project meta
@@ -31,7 +44,7 @@ function kct_project_status_shortcode() {
 
     $query = new WP_Query( array(
         'post_type'      => 'project',
-        'posts_per_page' => 1,           // one client = one project
+        'posts_per_page' => -1,           // show all projects
         'post_status'    => 'publish',
         'meta_query'     => array(
             array(

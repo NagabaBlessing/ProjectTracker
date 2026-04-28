@@ -19,3 +19,25 @@ function kanzucode_child_enqueue_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'kanzucode_child_enqueue_styles');
+/**
+ * Redirect clients to client portal after login
+ * and if they visit the homepage directly
+ */
+function kct_redirect_clients_to_portal() {
+    if ( ! is_user_logged_in() ) return;
+    
+    $user = wp_get_current_user();
+    
+    if ( in_array('kct_client', $user->roles) && is_front_page() ) {
+        wp_redirect( home_url('/client-portal/') );
+        exit;
+    }
+}
+add_action('template_redirect', 'kct_redirect_clients_to_portal');
+// Add theme support for custom logo
+add_theme_support('custom-logo', array(
+    'height'      => 80,
+    'width'       => 200,
+    'flex-height' => true,
+    'flex-width'  => true,
+));
