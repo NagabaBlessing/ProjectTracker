@@ -36,10 +36,7 @@
                     <th style="text-align:left; padding:10px; background:#1a1a2e; color:white;">Developer</th>
                     <td style="padding:10px; border-bottom:1px solid #e5e7eb;"><?= esc_html($developer) ?></td>
                 </tr>
-                <tr>
-                    <th style="text-align:left; padding:10px; background:#1a1a2e; color:white;">Client</th>
-                    <td style="padding:10px; border-bottom:1px solid #e5e7eb;"><?= esc_html($client) ?></td>
-                </tr>
+                
                 <tr>
                     <th style="text-align:left; padding:10px; background:#1a1a2e; color:white;">Go-Live Date</th>
                     <td style="padding:10px;"><?= esc_html($go_live) ?></td>

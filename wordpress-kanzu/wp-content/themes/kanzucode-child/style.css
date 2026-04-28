@@ -11,8 +11,7 @@
 /* ============================================
    IMPORT FONT
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 /* ============================================
    CSS VARIABLES
    ============================================ */
@@ -22,7 +21,8 @@
     --kc-dark:    #1A1A2E;
     --kc-light:   #F9F9F9;
     --kc-text:    #333333;
-    --kc-font:    'Inter', sans-serif;
+    --kc-font:    'Poppins', sans-serif;
+    --kc-title-blue: #2799d6;
 }
 
 /* ============================================
@@ -40,16 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================
    ADMIN BAR FIX
    ============================================ */
-html { margin-top: 0 !important; }
-
 #wpadminbar { position: fixed !important; }
-
-body.admin-bar .site-header { top: 32px; }
-
-@media screen and (max-width: 782px) {
-    body.admin-bar .site-header { top: 46px; }
-}
-
 /* ============================================
    HEADER
    ============================================ */
@@ -231,4 +222,108 @@ body {
 
 .site-main {
     flex: 1;  /* takes up all available space between header and footer */
+}
+
+
+/* Respect WordPress admin bar offset so header is never clipped. */
+body.admin-bar .site-header {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .site-header {
+        top: 46px;
+    }
+}
+/* ============================================
+   PROJECT TRACKER POLISH
+   ============================================ */
+.kct-content-wrap {
+    max-width: 980px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.site-header {
+    background: linear-gradient(90deg, #0a1628 0%, #1b9bd1 100%) !important;
+    border-bottom: 3px solid var(--kc-primary);
+    box-shadow: 0 6px 18px rgba(10, 22, 40, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 70px;
+}
+
+.site-footer {
+    background: #0a1628;
+    border-top: 3px solid var(--kc-primary);
+    box-shadow: 0 -3px 10px rgba(10, 22, 40, 0.08);
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.kct-project-single-card h1 {
+    margin-bottom: 1rem;
+}
+
+.kct-project-single-meta p {
+    margin-bottom: 0.75rem;
+}
+
+.kct-status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.85em;
+}
+
+.kct-back-btn {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.kct-back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.post-card h1,
+.post-card h2,
+.post-card h3,
+.post-card h2 a,
+.post-card h3 a,
+.kct-project-title {
+    color: var(--kc-title-blue);
+}
+.kct-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.kct-profile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.kct-profile-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.kct-profile-menu a:hover {
+    color: var(--kc-primary);
 }

@@ -64,7 +64,7 @@ function kct_enqueue_admin_styles($hook) {
     }
     wp_enqueue_style(
         'kct-admin-style',
-        plugin_dir_url(__FILE__) . 'assets/admin-style.css',
+        plugin_dir_url(__FILE__) . 'assets/admin_style.css',
         array(),
         '1.0.0'
     );
@@ -79,4 +79,40 @@ function kct_enqueue_frontend_styles() {
         '1.0.0'
     );
 }
+
 add_action( 'wp_enqueue_scripts', 'kct_enqueue_frontend_styles' );
+
+/**
+ * Auto-update project statuses when go-live date is reached.
+ * Runs at most once per hour to avoid heavy queries on every request.
+ */
+function kct_auto_update_project_statuses() {
+    if (get_transient('kct_status_auto_update_lock')) {
+        return;
+    }
+    set_transient('kct_status_auto_update_lock', 1, HOUR_IN_SECONDS);
+
+    $today = wp_date('Y-m-d');
+    $projects = get_posts(array(
+        'post_type'      => 'project',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'fields'         => 'ids',
+        'meta_query'     => array(
+            array(
+                'key'     => '_kct_go_live_date',
+                'value'   => $today,
+                'compare' => '<=',
+                'type'    => 'DATE',
+            ),
+        ),
+    ));
+
+    foreach ($projects as $project_id) {
+        $current_status = get_post_meta($project_id, '_kct_status', true);
+        if ($current_status !== 'Completed' && $current_status !== 'Go Live') {
+            update_post_meta($project_id, '_kct_status', 'Go Live');
+        }
+    }
+}
+add_action('init', 'kct_auto_update_project_statuses');
