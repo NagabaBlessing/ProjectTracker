@@ -1,0 +1,37 @@
+# ============================================
+# Ignore all of WordPress core — track only our code
+# ============================================
+
+# Ignore everything in the root of wordpress-kanzu
+# (wp-admin, wp-includes, loose PHP files, etc.)
+wordpress-kanzu/*
+
+# But keep wp-content
+!wordpress-kanzu/wp-content/
+
+# Ignore everything directly inside wp-content
+wordpress-kanzu/wp-content/*
+
+# But keep our three folders
+!wordpress-kanzu/wp-content/plugins/
+!wordpress-kanzu/wp-content/themes/
+!wordpress-kanzu/wp-content/uploads/
+
+# Ignore everything inside plugins EXCEPT our plugin
+wordpress-kanzu/wp-content/plugins/*
+!wordpress-kanzu/wp-content/plugins/kanzucode-project-tracker/
+
+# Ignore everything inside themes EXCEPT our themes
+wordpress-kanzu/wp-content/themes/*
+!wordpress-kanzu/wp-content/themes/kanzucode-child/
+!wordpress-kanzu/wp-content/themes/kanzu-demo-theme/
+
+# Ignore uploads content (don't track media files)
+wordpress-kanzu/wp-content/uploads/*
+
+# OS and server junk
+.DS_Store
+Thumbs.db
+wp-config.php
+.htaccess
+*.log

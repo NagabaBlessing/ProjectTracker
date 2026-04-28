@@ -1,0 +1,234 @@
+/*
+ Theme Name:   Kanzu Code Child
+ Theme URI:    https://kanzucode.com
+ Description:  Kanzu Code child theme for the Project Tracker
+ Author:       Kanzu Code
+ Author URI:   https://kanzucode.com
+ Template:     kanzu-demo-theme
+ Version:      1.0.0
+*/
+
+/* ============================================
+   IMPORT FONT
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+    --kc-primary: #E8431E;
+    --kc-blue:    #1B9BD1;
+    --kc-dark:    #1A1A2E;
+    --kc-light:   #F9F9F9;
+    --kc-text:    #333333;
+    --kc-font:    'Inter', sans-serif;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+
+
+a { color: var(--kc-primary); }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--kc-font);
+    color: var(--kc-dark);
+}
+
+/* ============================================
+   ADMIN BAR FIX
+   ============================================ */
+html { margin-top: 0 !important; }
+
+#wpadminbar { position: fixed !important; }
+
+body.admin-bar .site-header { top: 32px; }
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .site-header { top: 46px; }
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Logo */
+.site-branding .custom-logo-link,
+.site-branding .custom-logo-link img {
+    display: flex;
+    align-items: center;
+    max-height: 45px;
+    width: auto;
+}
+
+/* "Kanzu Desk" text */
+.site-name {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--kc-font);
+    display: flex;
+    gap: 4px;
+}
+
+.site-name .kanzu { color: var(--kc-primary); }
+.site-name .desk  { color: #ffffff; }
+
+/* Nav links */
+.wp-block-navigation a,
+.nav-menu a {
+    color: #ffffff !important;
+}
+
+.wp-block-navigation a:hover,
+.nav-menu a:hover {
+    color: var(--kc-primary) !important;
+    text-decoration: none;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+
+.site-footer .kanzu { color: #ffffff; font-weight: 700; }
+.site-footer .code  { color: var(--kc-primary); font-weight: 700; }
+
+/* ============================================
+   PAGE TITLE
+   ============================================ */
+.page-title {
+    border-left: 4px solid var(--kc-primary);
+    padding-left: 1rem;
+    margin: 2rem;
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+.post-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin: 1rem 2rem;
+}
+
+.post-card h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.post-card h2 a {
+    color: var(--kc-primary);
+    text-decoration: none;
+}
+
+.post-card h2 a:hover { color: var(--kc-blue); }
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.wp-block-button__link,
+button[type="submit"],
+.kct-login-btn {
+    background-color: var(--kc-primary) !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 30px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.kct-login-btn:hover,
+.wp-block-button__link:hover {
+    background-color: var(--kc-blue) !important;
+    color: #ffffff !important;
+}
+
+/* ============================================
+   WELCOME SCREEN — guests
+   ============================================ */
+.kct-welcome {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.kct-welcome h1 {
+    color: var(--kc-dark);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   NOTICES
+   ============================================ */
+.kct-notice,
+.kct-login-prompt {
+    background: #f8f9fa;
+    border-left: 4px solid var(--kc-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    margin: 2rem;
+}
+/* ============================================
+   LAYOUT BASE
+   ============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+    background-color: var(--kc-blue) !important;
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+    background-color: var(--kc-blue);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    margin-top: auto;  /* pushes footer down */
+}
+
+/* Make body a flex column so footer sticks to bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-main {
+    flex: 1;  /* takes up all available space between header and footer */
+}
