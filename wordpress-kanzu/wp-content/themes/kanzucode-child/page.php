@@ -7,6 +7,7 @@ $is_client    = in_array('kct_client', $current_user->roles);
 
 get_header();
 ?>
+<main class="site-main">
 <?php if ( is_front_page() ) : ?>
 
         <?php if ( ! is_user_logged_in() ) : ?>

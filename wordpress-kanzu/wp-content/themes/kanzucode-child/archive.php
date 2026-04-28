@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-// This template is used for users view
 <main class="site-main">
     <h1 class="page-title"><?php the_archive_title(); ?></h1>
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
