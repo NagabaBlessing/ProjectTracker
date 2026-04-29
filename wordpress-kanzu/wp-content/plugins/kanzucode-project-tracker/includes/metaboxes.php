@@ -47,10 +47,11 @@ function kct_project_details_cb($post)
             <td>
                 <select name="kct_status" id="kct_status">
                     <option value="">— Select Status —</option>
+                    <option value="Requirements" <?php selected($status, 'Requirements Gathering'); ?>>Requirements Gathering</option>
                     <option value="In Progress" <?php selected($status, 'In Progress'); ?>>In Progress</option>
                     <option value="QA Testing" <?php selected($status, 'QA Testing'); ?>>QA Testing</option>
+                    <option value="UAT" <?php selected($status, 'UAT'); ?>>UAT</option>
                     <option value="Go Live" <?php selected($status, 'Go Live'); ?>>Go Live</option>
-                    <option value="Completed" <?php selected($status, 'Completed'); ?>>Completed</option>
                 </select>
             </td>
         </tr>
