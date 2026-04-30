@@ -32,10 +32,9 @@ function kct_project_details_cb($post)
     // Fetch all users with the kct_client role for the client dropdown
     $clients = get_users(array('role' => 'kct_client'));
 
-    // Fetch all users with the editor or author role for the developer dropdown
-    // We use administrator + editor as "developers" since they have WP accounts
+    /// Fetch all users with the dedicated project developer role.
     $developers = get_users(array(
-        'role__in' => array('editor', 'author'),
+        'role' => 'kct_developer',
     ));
     ?>
 
@@ -68,7 +67,7 @@ function kct_project_details_cb($post)
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <p class="description">Only editors and authors appear here.</p>
+                <p class="description">Only users with the "KCT Developer" role appear here.</p>
             </td>
         </tr>
 
@@ -85,7 +84,7 @@ function kct_project_details_cb($post)
                     <?php endforeach; ?>
                 </select>
                 <?php if (empty($clients)): ?>
-                    <p class="description" style="color:#b32d2e">
+                    <p class="description" style="color:#1f4e8c">
                         No clients found. Add a user with the "KCT Client" role first.
                     </p>
                 <?php endif; ?>

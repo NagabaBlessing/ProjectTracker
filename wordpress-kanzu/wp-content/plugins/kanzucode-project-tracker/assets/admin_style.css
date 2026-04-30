@@ -6,10 +6,9 @@
 
 .kct-wrap h1 {
     color: #1a1a2e;
-    border-left: 4px solid #f97316;
+    border-left: 4px solid #1f7ac7;
     padding-left: 12px;
 }
-
 .kct-table th {
     background-color: #1a1a2e;
     color: white;
@@ -30,8 +29,8 @@
 }
 
 .kct-badge-progress {
-    background: #fff7ed;
-    color: #c2410c;
+    background: #e8f2ff;
+    color: #1f4e8c;
 }
 
 .kct-badge-qa {
@@ -40,6 +39,6 @@
 }
 
 .kct-badge-live {
-    background: #f0fdf4;
-    color: #15803d;
+    background: #c9e2ff;
+    color: #0a3d7a;
 }

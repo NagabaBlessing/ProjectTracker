@@ -1,9 +1,9 @@
 <?php
 get_header();
 
-$author = get_queried_object();
-$author_id = isset($author->ID) ? (int) $author->ID : 0;
-$author_role = !empty($author->roles) ? $author->roles[0] : '';
+$author       = get_queried_object();
+$author_id    = isset($author->ID) ? (int) $author->ID : 0;
+$author_role  = !empty($author->roles) ? $author->roles[0] : '';
 $display_name = $author ? $author->display_name : '';
 ?>
 
@@ -20,10 +20,10 @@ $display_name = $author ? $author->display_name : '';
 
     <?php
     $status_colours = array(
-        'In Progress' => '#fff3cd',
-        'QA Testing'  => '#cfe2ff',
-        'Go Live'     => '#d1e7dd',
-        'Completed'   => '#d3d3d3',
+        'In Progress' => '#fff3cd',  // Fixed: yellow (was near-identical blue)
+        'QA Testing'  => '#cfe2ff',  // Fixed: blue (was near-identical blue)
+        'Go Live'     => '#d1e7dd',  // Fixed: green (was near-identical blue)
+        'Completed'   => '#d3d3d3',  // Fixed: grey (was near-identical blue)
     );
 
     $as_client = new WP_Query(array(
@@ -61,9 +61,9 @@ $display_name = $author ? $author->display_name : '';
     <?php if ($as_client->have_posts()): ?>
         <h2 class="page-title">Projects as Client</h2>
         <?php while ($as_client->have_posts()): $as_client->the_post();
-            $status = get_post_meta(get_the_ID(), '_kct_status', true);
+            $status  = get_post_meta(get_the_ID(), '_kct_status',       true);
             $go_live = get_post_meta(get_the_ID(), '_kct_go_live_date', true);
-            $badge = isset($status_colours[$status]) ? $status_colours[$status] : '#f0f0f0';
+            $badge   = isset($status_colours[$status]) ? $status_colours[$status] : '#f0f0f0';
             ?>
             <div class="post-card">
                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
@@ -82,7 +82,7 @@ $display_name = $author ? $author->display_name : '';
     <?php if ($as_developer->have_posts()): ?>
         <h2 class="page-title" style="margin-top:2rem;">Projects as Developer</h2>
         <?php while ($as_developer->have_posts()): $as_developer->the_post();
-            $status = get_post_meta(get_the_ID(), '_kct_status', true);
+            $status    = get_post_meta(get_the_ID(), '_kct_status',    true);
             $client_id = get_post_meta(get_the_ID(), '_kct_client_id', true);
             $client_name = '—';
             if ($client_id) {

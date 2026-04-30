@@ -16,7 +16,7 @@
    CSS VARIABLES
    ============================================ */
 :root {
-    --kc-primary: #E8431E;
+    --kc-primary: #1f7ac7 !important;
     --kc-blue:    #1B9BD1;
     --kc-dark:    #1A1A2E;
     --kc-light:   #F9F9F9;
@@ -28,7 +28,6 @@
 /* ============================================
    BASE
    ============================================ */
-
 
 a { color: var(--kc-primary); }
 
@@ -44,7 +43,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================
    HEADER
    ============================================ */
-
 
 .site-branding {
     display: flex;
@@ -89,7 +87,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================
    FOOTER
    ============================================ */
-
 
 .site-footer .kanzu { color: #ffffff; font-weight: 700; }
 .site-footer .code  { color: var(--kc-primary); font-weight: 700; }
@@ -210,7 +207,7 @@ html, body {
     text-align: center;
     padding: 1.5rem 2rem;
     width: 100%;
-    margin-top: auto;  /* pushes footer down */
+    margin-top: auto;
 }
 
 /* Make body a flex column so footer sticks to bottom */
@@ -221,9 +218,8 @@ body {
 }
 
 .site-main {
-    flex: 1;  /* takes up all available space between header and footer */
+    flex: 1;
 }
-
 
 /* Respect WordPress admin bar offset so header is never clipped. */
 body.admin-bar .site-header {
@@ -326,4 +322,36 @@ body.admin-bar .site-header {
 
 .kct-profile-menu a:hover {
     color: var(--kc-primary);
+}
+/* ============================================
+   ORANGE OVERRIDE FIX
+   ============================================ */
+header.site-header {
+    border-bottom: 3px solid #1B9BD1 !important;
+}
+
+header.site-header a.site-name span.kanzu {
+    color: #1f7ac7 !important;
+}
+
+footer.site-footer {
+    border-top: 3px solid #1B9BD1 !important;
+}
+
+footer.site-footer span.code {
+    color: #1B9BD1 !important;
+}
+
+.kct-notice,
+.kct-login-prompt {
+    border-left: 4px solid #1B9BD1 !important;
+}
+
+.page-title {
+    border-left: 4px solid #1B9BD1 !important;
+}
+/* Fix for single project view specifically */
+
+.site-title .kanzu {
+    color: #1f7ac7 !important;
 }

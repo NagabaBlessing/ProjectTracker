@@ -1,59 +1,109 @@
 /* ============================================
-   CLIENT PORTAL — Project Status Shortcode
+   Base layout (top-level primitives)
    ============================================ */
-
-.kct-project-card {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 2rem;
-    max-width: 600px;
-    margin: 2rem auto;
-    font-family: 'Inter', sans-serif;
+:root {
+    --kct-color-bg: #ffffff;
+    --kct-color-border: #e0e0e0;
+    --kct-color-text-primary: #1a1a2e;
+    --kct-color-text-secondary: #555;
+    --kct-color-accent: #1f7ac7;
 }
-
-.kct-project-title {
-    color: #1A1A2E;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #E8431E;
-    padding-bottom: 0.5rem;
-}
-
-.kct-meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.kct-meta-label {
-    font-weight: 600;
-    color: #1A1A2E;
-}
-
-.kct-meta-value {
-    color: #555;
-}
-
-/* Status badge colours */
-.kct-status {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.kct-status--in_progress  { background: #fff3cd; color: #856404; }
-.kct-status--qa_testing   { background: #cfe2ff; color: #084298; }
-.kct-status--go_live      { background: #d1e7dd; color: #0f5132; }
-.kct-status--completed    { background: #d3d3d3; color: #333;    }
 
 .kct-login-prompt,
 .kct-notice {
     background: #f8f9fa;
-    border-left: 4px solid #E8431E;
-    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--kct-color-accent);
     border-radius: 4px;
+    padding: 1rem 1.5rem;
+}
+
+/* ============================================
+   Project cards (BEM)
+   ============================================ */
+.kct-project-card {
+    background: var(--kct-color-bg);
+    border: 1px solid var(--kct-color-border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 1.5rem;
+    width: min(100%, 1100px);
+}
+
+.kct-project-card--full-width {
+    width: 100%;
+}
+
+.kct-project-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.kct-project-grid--cards {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.kct-project-grid--stacked {
+    grid-template-columns: 1fr;
+}
+
+.kct-project-card__title {
+    border-bottom: 2px solid var(--kct-color-accent);
+    color: var(--kct-color-text-primary);
+    font-size: 1.5rem;
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.kct-project-card__row {
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+}
+
+.kct-project-card__label {
+    color: var(--kct-color-text-primary);
+    font-weight: 600;
+}
+
+.kct-project-card__value {
+    color: var(--kct-color-text-secondary);
+}
+
+.kct-project-card__status {
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 12px;
+}
+
+.kct-project-card__status--in_progress { background: #e8f2ff; color: #1f4e8c; }
+.kct-project-card__status--qa_testing { background: #d7eaff; color: #0e4a92; }
+.kct-project-card__status--go_live { background: #c9e2ff; color: #0a3d7a; }
+.kct-project-card__status--completed { background: #dbeafe; color: #1e3a8a; }
+
+/* Square-card screens: allow side-by-side occupancy */
+@media (min-width: 992px) {
+    .kct-project-grid--cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .kct-project-card {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Vertical/scrollable screens: fill available screen width */
+@media (max-width: 991px) {
+    .kct-project-card,
+    .kct-project-card--full-width {
+        max-width: 100%;
+        width: 100%;
+    }
 }
